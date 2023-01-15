@@ -3,7 +3,7 @@
 ##### This script assumes a properly configured ngrok config at `~/.config/ngrok/ngrok.yml`. 
 ##### Here is an example config which creates two, for SSH and a Minecraft server:
 
-  version: "2"
+  `version: "2"
   authtoken: foo
   tunnels:
     app-one:
@@ -11,5 +11,5 @@
       proto: tcp
     app-two:
       addr: 25565
-      proto: tcp
+      proto: tcp`
 
