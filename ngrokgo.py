@@ -6,7 +6,7 @@ log = 'ngrok.log'
 p = r'([a-zA-Z_][a-zA-Z_\d]*)=("[^"]*"|[^\s]+)'
 
 def exec():
-	os.system("./ngrok.sh")
+	os.system("ngrok start --all --log=stdout > ngrok.log &")
 	time.sleep(1)
 
 def parse_to_dict(s) -> dict:
