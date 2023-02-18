@@ -4,7 +4,7 @@ import linecache
 import re
 import requests
 import yaml
-
+from pathlib import *
 
 
 #add loop to scan for ports wanted
@@ -12,18 +12,23 @@ import yaml
 #then implement those vars into the script
 def makeconfig():
 	apps = []
-	app_number = int(input("How many apps to deploy? "))
+	app_number = int(input("How many apps to deploy? : "))
 	anum = 1
 	while(anum <= app_number):
 		app_name = input("Enter a name for app " + str(anum) + ": ")
 		app_port = int(input("Enter a port for app " + str(anum) + ": "))
-		app_type = input("Enter a tunnel type (tcp, udp, etc) ")
+		app_type = input("Enter a tunnel type (tcp, udp, etc) : ")
 		apps.extend((str(app_name), str(app_port), str(app_type)))
 		anum += 1
-	print(apps)
+	Path("ngrok.yml").touch()
+	data = {
+    'version': '"2"',
+    'authtoken':'foo',
+    'tunnels': {apps[0]: {'addr': apps[1], 'proto': apps[2]}}
+    }
+	with open(f'ngrok.yml', 'w') as f:
+		yaml.dump(data, f, sort_keys=False)
 	
-
-
 
 log = 'ngrok.log'
 p = r'([a-zA-Z_][a-zA-Z_\d]*)=("[^"]*"|[^\s]+)'
@@ -54,19 +59,20 @@ def rokbot(x, y):
 
 def main():
 	makeconfig()
-	exec()
-	#First app
-	info1 = linecache.getline(log, 8)
-	url1 = parse_to_dict(info1)["url"]
-	addr1 = parse_to_dict(info1)["addr"]
-	#Second app
-	info2 = linecache.getline(log, 9)
-	url2 = parse_to_dict(info2)["url"]
-	addr2 = parse_to_dict(info2)["addr"]
-	#Message vars 
-	status1 = "Tunnel " + url1 + " is exposed to " + addr1
-	status2 = "Tunnel " + url2 + " is exposed to " + addr2
-	#Integration if webhook exists
-	if discord_url != "":
-		rokbot(status1, status2)
+	
+	# exec()
+	# #First app
+	# info1 = linecache.getline(log, 8)
+	# url1 = parse_to_dict(info1)["url"]
+	# addr1 = parse_to_dict(info1)["addr"]
+	# #Second app
+	# info2 = linecache.getline(log, 9)
+	# url2 = parse_to_dict(info2)["url"]
+	# addr2 = parse_to_dict(info2)["addr"]
+	# #Message vars 
+	# status1 = "Tunnel " + url1 + " is exposed to " + addr1
+	# status2 = "Tunnel " + url2 + " is exposed to " + addr2
+	# #Integration if webhook exists
+	# if discord_url != "":
+	# 	rokbot(status1, status2)
 main()
