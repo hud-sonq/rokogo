@@ -22,10 +22,10 @@ def makeconfig():
 		anum += 1
 	Path("ngrok.yml").touch()
 	data = {
-    'version': '"2"',
-    'authtoken':'foo',
-    'tunnels': {apps[0]: {'addr': apps[1], 'proto': apps[2]}}
-    }
+        'version': '"2"',
+        'authtoken':'foo',
+        'tunnels': {apps[0]: {'addr': apps[1], 'proto': apps[2]}}
+        }
 	with open(f'ngrok.yml', 'w') as f:
 		yaml.dump(data, f, sort_keys=False)
 	
