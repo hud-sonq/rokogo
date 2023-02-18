@@ -16,7 +16,7 @@ def makeconfig():
 		app_type = input("Enter a tunnel type (tcp, udp, etc) : ")
 		apps.extend((str(app_name), str(app_port), str(app_type)))
 		anum += 1
-	Path("ngrok.yml").touch()
+	Path("~/.config/ngrok/ngrok.yml").touch()
 	data = {
         'version': '"2"',
         'authtoken':'foo',
