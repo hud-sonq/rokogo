@@ -1,6 +1,0 @@
-version: '"2"'
-authtoken: foo
-tunnels:
-  appone:
-    addr: '25565'
-    proto: tcp
