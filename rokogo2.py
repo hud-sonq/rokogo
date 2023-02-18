@@ -6,10 +6,6 @@ import requests
 import yaml
 from pathlib import *
 
-
-#add loop to scan for ports wanted
-#and scan for app type (tcp, udp, etc)
-#then implement those vars into the script
 def makeconfig():
 	apps = []
 	app_number = int(input("How many apps to deploy? : "))
