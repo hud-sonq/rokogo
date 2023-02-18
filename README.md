@@ -4,5 +4,5 @@
 ##### ~~This script assumes a properly configured ngrok config at `~/.config/ngrok/ngrok.yml`.~~
 ##### ~~Here is an example config which creates two tunels, one for SSH and one for a Minecraft server:~~
 
-```ngrok.yml``` Config creation loop added (work in progress)
+```ngrok.yml``` config creation loop added (work in progress)
 
